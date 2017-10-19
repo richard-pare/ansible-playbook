@@ -11,7 +11,14 @@
 
   tasks:
   
-  - name: Telecharger le JDK
-    command: "wget -q -O {{java_rpm}} --no-cookies --no-check-certificate --header 'Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie' {{download_url}}"    
+#  - name: Telecharger le JDK
+#    command: "wget -q -O {{java_rpm}} --no-cookies --no-check-certificate --header 'Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie' {{download_url}}"    
+    
+  - name: Telecharger le JDK    
+    get_url:
+      url: "{{download_url}}"
+      dest: "{{java_rpm}}"
+      validate_certs: no
+      headers: 'Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F,oraclelicense=accept-securebackup-cookie'
     
  
