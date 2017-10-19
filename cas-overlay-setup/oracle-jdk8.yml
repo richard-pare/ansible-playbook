@@ -3,6 +3,7 @@
   remote_user: root
   sudo: yes
   vars:
+  http://download.oracle.com/otn-pub/java/jdk/8u151-b12/jdk-8u151-linux-x64.rpm
     download_url: http://download.oracle.com/otn-pub/java/jdk/8u151-b12/jdk-8u151-linux-x64.rpm
     download_folder: /tmp
     java_name: "{{download_folder}}/jdk1.8.0_05"
@@ -12,6 +13,6 @@
   tasks:
   
   - name: Télécharger le JDK
-    command: "wget -q -O {{java_rpm}} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{download_url}} creates={{java_rpm}}"
+    command: "wget -q -O {{java_rpm}} --no-cookies --no-check-certificate --header 'Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie' {{download_url}}"    
     
  
