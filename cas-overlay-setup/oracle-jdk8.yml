@@ -52,7 +52,7 @@
         cert_port: 443
         keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
         keystore_pass: changeit
-        state: present
+        state: absent
         
     - name: Importer le certificat SSL "jcenter.bintray.com" dans le keystore
       java_cert:
@@ -60,7 +60,7 @@
         cert_port: 443
         keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
         keystore_pass: changeit
-        state: present
+        state: absent
 
     - name: Importer le certificat SSL "dl.bintray.com" dans le keystore
       java_cert:
@@ -68,7 +68,7 @@
         cert_port: 443
         keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
         keystore_pass: changeit
-        state: present
+        state: absent
 
     - name: Importer le certificat SSL "raw.githubusercontent.com" dans le keystore
       java_cert:
@@ -76,7 +76,7 @@
         cert_port: 443
         keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
         keystore_pass: changeit
-        state: present
+        state: absent
 
     - name: Importer le certificat SSL "oss.sonatype.org" dans le keystore
       java_cert:
@@ -84,7 +84,7 @@
         cert_port: 443
         keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
         keystore_pass: changeit
-        state: present
+        state: absent
 
     - name: Importer le certificat SSL "build.shibboleth.net" dans le keystore
       java_cert:
@@ -92,7 +92,7 @@
         cert_port: 443
         keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
         keystore_pass: changeit
-        state: present
+        state: absent
 
 
 
