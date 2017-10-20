@@ -24,6 +24,12 @@
        name: git
        state: latest
        
+    - name: Déactiver la vérification des certificats pour GIT
+      lineinfile:
+       path: /etc/environment
+       regexp: '^GIT_SSL_NO_VERIFY='
+       line: 'GIT_SSL_NO_VERIFY=true'   
+       
        
 #    - name: Import SSL certificate from repository.apache.org to a given cacerts keystore
 #      java_cert:
