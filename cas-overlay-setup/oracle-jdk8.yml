@@ -1,33 +1,36 @@
 ---
-- hosts: localhost
+- hosts: cas_build
   remote_user: root
-  sudo: yes
-  vars:
-    download_url: http://download.oracle.com/otn-pub/java/jdk/8u151-b12/jdk-8u151-linux-x64.rpm
-    download_folder: /tmp
-    java_name: "{{download_folder}}/jdk1.8.0_05"
-    java_rpm: "{{download_folder}}/jdk-8u151-linux-x64.rpm"
 
+  vars:
+    jdk_rpm_file: jdk-8u151-linux-x64.rpm
+    package_directory: /root
+    temp_folder: /tmp
 
   tasks:
   
-    - name: Install Oracle JDK 
+    - name: Transférer le fichier RPM sur le serveur
+      copy:
+        src: "{{ package_directory }}/{{ jdk_rpm_file }}"
+        dest: "{{ temp_folder }}"
+  
+    - name: Installer Oracle JDK 
       yum:
-       name: /root/jdk-8u151-linux-x64.rpm
+       name: "{{ temp_folder }}/{{ jdk_rpm_file }}"
        state: present
        
-    - name: Import SSL certificate from repository.apache.org to a given cacerts keystore
-      java_cert:
-        cert_url: repository.apache.org
-        cert_port: 443
-        keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
-        keystore_pass: changeit
-        state: present
+#    - name: Import SSL certificate from repository.apache.org to a given cacerts keystore
+#      java_cert:
+#        cert_url: repository.apache.org
+#        cert_port: 443
+#        keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
+#        keystore_pass: changeit
+#        state: present
 
-    - name: Import SSL certificate from services.gradle.org to a given cacerts keystore
-      java_cert:
-        cert_url: services.gradle.org
-        cert_port: 443
-        keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
-        keystore_pass: changeit
-        state: present
+#    - name: Import SSL certificate from services.gradle.org to a given cacerts keystore
+#      java_cert:
+#        cert_url: services.gradle.org
+#        cert_port: 443
+#        keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
+#        keystore_pass: changeit
+#        state: present
