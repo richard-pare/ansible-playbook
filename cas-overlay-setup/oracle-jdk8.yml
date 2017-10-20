@@ -30,6 +30,17 @@
        regexp: '^GIT_SSL_NO_VERIFY='
        line: 'GIT_SSL_NO_VERIFY=true'   
        
+    - name: Rediriger requete HTTP via Proxy
+      lineinfile:
+       path: /etc/environment
+       regexp: '^http_proxy='
+       line: 'http_proxy="http://qxdpxe01.dev.shq.local:8080/"'   
+
+    - name: Rediriger requete HTTP via Proxy
+      lineinfile:
+       path: /etc/environment
+       regexp: '^https_proxy='
+       line: 'http_proxy="http://qxdpxe01.dev.shq.local:8080/"'   
 
 #
 # Si Overlay avec Gradle
