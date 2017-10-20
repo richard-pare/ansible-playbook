@@ -24,20 +24,20 @@
        name: git
        state: latest
        
-    - name: Déactiver la vérification des certificats pour GIT
+    - name: Deactiver la vérification des certificats pour GIT
       lineinfile:
        path: /etc/environment
        regexp: '^GIT_SSL_NO_VERIFY='
        line: 'GIT_SSL_NO_VERIFY=true'   
        
        
-#    - name: Import SSL certificate from repository.apache.org to a given cacerts keystore
-#      java_cert:
-#        cert_url: repository.apache.org
-#        cert_port: 443
-#        keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
-#        keystore_pass: changeit
-#        state: present
+    - name: Importer le certificat SSL "services.gradle.org" dans le keystore
+      java_cert:
+        cert_url: services.gradle.org
+        cert_port: 443
+        keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
+        keystore_pass: changeit
+        state: present
 
 #    - name: Import SSL certificate from services.gradle.org to a given cacerts keystore
 #      java_cert:
