@@ -50,8 +50,40 @@
         keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
         keystore_pass: changeit
         state: present
-        
-        
+
+    - name: Importer le certificat SSL "dl.bintray.com" dans le keystore
+      java_cert:
+        cert_url: dl.bintray.com
+        cert_port: 443
+        keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
+        keystore_pass: changeit
+        state: present
+
+    - name: Importer le certificat SSL "raw.githubusercontent.com" dans le keystore
+      java_cert:
+        cert_url: raw.githubusercontent.com
+        cert_port: 443
+        keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
+        keystore_pass: changeit
+        state: present
+
+    - name: Importer le certificat SSL "oss.sonatype.org" dans le keystore
+      java_cert:
+        cert_url: oss.sonatype.org
+        cert_port: 443
+        keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
+        keystore_pass: changeit
+        state: present
+
+    - name: Importer le certificat SSL "build.shibboleth.net" dans le keystore
+      java_cert:
+        cert_url: build.shibboleth.net
+        cert_port: 443
+        keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
+        keystore_pass: changeit
+        state: present
+
+
 
 
 #    - name: Import SSL certificate from services.gradle.org to a given cacerts keystore
