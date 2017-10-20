@@ -30,7 +30,11 @@
        regexp: '^GIT_SSL_NO_VERIFY='
        line: 'GIT_SSL_NO_VERIFY=true'   
        
-       
+
+#
+# Si Overlay avec Gradle
+#
+              
     - name: Importer le certificat SSL "services.gradle.org" dans le keystore
       java_cert:
         cert_url: services.gradle.org
@@ -38,6 +42,17 @@
         keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
         keystore_pass: changeit
         state: present
+        
+    - name: Importer le certificat SSL "jcenter.bintray.com" dans le keystore
+      java_cert:
+        cert_url: jcenter.bintray.com
+        cert_port: 443
+        keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
+        keystore_pass: changeit
+        state: present
+        
+        
+
 
 #    - name: Import SSL certificate from services.gradle.org to a given cacerts keystore
 #      java_cert:
