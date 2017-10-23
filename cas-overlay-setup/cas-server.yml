@@ -19,7 +19,7 @@
        name: "{{ temp_folder }}/{{ jdk_rpm_file }}"
        state: present
 
-    -name: Generate an OpenSSL Certificate Signing Request
+    - name: Generate an OpenSSL Certificate Signing Request
        openssl_csr:
          path: /etc/ssl/csr/casserver.shq.local.csr
          privatekey_path: /etc/ssl/private/casserver.pem
