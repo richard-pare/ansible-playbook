@@ -19,8 +19,27 @@
        name: "{{ temp_folder }}/{{ jdk_rpm_file }}"
        state: present
        
-    - name: Generate an OpenSSL Certificate Signing Request
-        openssl_csr:
-          path: /etc/ssl/csr/casserver.shq.local.csr
-          privatekey_path: /etc/ssl/private/casserver.pem
-          common_name: casserver.shq.local       
+    - name: Generate RSA Key
+      command: openssl genrsa \
+        -out "/tmp/jenkins_home/ssl/key.pem" 2048
+      args:
+        creates: "/tmp/jenkins_home/ssl/key.pem"
+
+    - name: Generate CSR
+      command: openssl req \
+        -new \
+        -subj '/C=US/ST=CA/L=Mountain View/O=Jasmeet/CN={{ fqdn }}'
+        -key "/tmp/jenkins_home/ssl/key.pem" \
+        -out "/tmp/jenkins_home/ssl/csr.pem"
+      args:
+        creates: "/tmp/jenkins_home/ssl/csr.pem"
+
+    - name: Generate Self-signed Certificate
+      command: openssl req \
+        -x509 \
+        -days 1825 \
+        -key "/tmp/jenkins_home/ssl/key.pem" \
+        -in "/tmp/jenkins_home/ssl/csr.pem" \
+        -out "/tmp/jenkins_home/ssl/cert.pem"
+      args:
+        creates: "/tmp/jenkins_home/ssl/cert.pem"
