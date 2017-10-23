@@ -1,0 +1,20 @@
+---
+- hosts: cas_build
+  remote_user: root
+
+  vars:
+    jdk_rpm_file: jdk-8u151-linux-x64.rpm
+    package_directory: /root
+    temp_folder: /tmp
+
+  tasks:
+  
+    - name: Transferer le fichier RPM sur le serveur
+      copy:
+        src: "{{ package_directory }}/{{ jdk_rpm_file }}"
+        dest: "{{ temp_folder }}"
+  
+    - name: Installer le package Oracle JDK 
+      yum:
+       name: "{{ temp_folder }}/{{ jdk_rpm_file }}"
+       state: present
