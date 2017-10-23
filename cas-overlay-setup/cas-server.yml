@@ -1,11 +1,12 @@
 ---
-- hosts: cas_build
+- hosts: casserver
   remote_user: root
 
   vars:
     jdk_rpm_file: jdk-8u151-linux-x64.rpm
     package_directory: /root
     temp_folder: /tmp
+    fqdn: casserver.shq.local
 
   tasks:
           
