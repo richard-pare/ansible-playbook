@@ -21,25 +21,25 @@
        
     - name: Generate RSA Key
       command: openssl genrsa \
-        -out "/tmp/jenkins_home/ssl/key.pem" 2048
+        -out "/tmp/key.pem" 2048
       args:
-        creates: "/tmp/jenkins_home/ssl/key.pem"
+        creates: "/tmp/key.pem"
 
     - name: Generate CSR
       command: openssl req \
         -new \
         -subj '/C=US/ST=CA/L=Mountain View/O=Jasmeet/CN={{ fqdn }}'
-        -key "/tmp/jenkins_home/ssl/key.pem" \
-        -out "/tmp/jenkins_home/ssl/csr.pem"
+        -key "/tmp/key.pem" \
+        -out "/tmp/csr.pem"
       args:
-        creates: "/tmp/jenkins_home/ssl/csr.pem"
+        creates: "/tmp/csr.pem"
 
     - name: Generate Self-signed Certificate
       command: openssl req \
         -x509 \
         -days 1825 \
-        -key "/tmp/jenkins_home/ssl/key.pem" \
-        -in "/tmp/jenkins_home/ssl/csr.pem" \
-        -out "/tmp/jenkins_home/ssl/cert.pem"
+        -key "/tmp/key.pem" \
+        -in "/tmp//csr.pem" \
+        -out "/tmp/cert.pem"
       args:
-        creates: "/tmp/jenkins_home/ssl/cert.pem"
+        creates: "/tmp/cert.pem"
