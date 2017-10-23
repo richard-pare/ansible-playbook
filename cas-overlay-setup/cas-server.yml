@@ -52,5 +52,6 @@
         executable: /usr/java/jdk1.8.0_151/bin/keytool
         keystore_path: /etc/cas/casserver
         keystore_pass: changeit
+        keystore_create: yes
         state: present
         
