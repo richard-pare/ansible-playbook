@@ -50,7 +50,7 @@
         cert_path: /tmp/cert.pem
         cert_alias: casserver
         executable: /usr/java/jdk1.8.0_151/bin/keytool
-        keystore_path: /usr/java/jdk1.8.0_151/jre/lib/security/cacerts
+        keystore_path: /etc/cas/casserver
         keystore_pass: changeit
         state: present
         
