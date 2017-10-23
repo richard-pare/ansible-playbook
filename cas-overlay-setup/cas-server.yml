@@ -20,7 +20,7 @@
        state: present
 
     - name: Generate an OpenSSL Certificate Signing Request
-       openssl_csr:
-         path: /etc/ssl/csr/casserver.shq.local.csr
-         privatekey_path: /etc/ssl/private/casserver.pem
-         common_name: casserver.shq.local
+      openssl_csr:
+       path: /etc/ssl/csr/casserver.shq.local.csr
+       privatekey_path: /etc/ssl/private/casserver.pem
+       common_name: casserver.shq.local
