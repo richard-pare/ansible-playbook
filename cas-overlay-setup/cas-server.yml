@@ -9,6 +9,12 @@
 
   tasks:
   
+    - name: Generate an OpenSSL Certificate Signing Request
+        openssl_csr:
+          path: /etc/ssl/csr/casserver.shq.local.csr
+          privatekey_path: /etc/ssl/private/casserver.pem
+          common_name: casserver.shq.local
+          
     - name: Transferer le fichier RPM sur le serveur
       copy:
         src: "{{ package_directory }}/{{ jdk_rpm_file }}"
@@ -19,8 +25,3 @@
        name: "{{ temp_folder }}/{{ jdk_rpm_file }}"
        state: present
 
-    - name: Generate an OpenSSL Certificate Signing Request
-      openssl_csr:
-       path: /etc/ssl/csr/casserver.shq.local.csr
-       privatekey_path: /etc/ssl/private/casserver.pem
-       common_name: casserver.shq.local
