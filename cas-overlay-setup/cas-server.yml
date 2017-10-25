@@ -29,7 +29,7 @@
     - name: Generate CSR
       command: openssl req \
         -new \
-        -subj '/C=CA/ST=QC/L=Société d'habitation du Québec/O=SHQ/CN={{ fqdn }}'
+        -subj '/C=CA/ST=QC/L=Societe/O=SHQ/CN={{ fqdn }}'
         -key "/tmp/key.pem" \
         -out "/tmp/csr.pem"
       args:
