@@ -7,6 +7,7 @@
     package_directory: /root
     temp_folder: /tmp
     fqdn: cas-server.shqrip.lab
+    java_home: /usr/java/jdk1.8.0_151
 
   tasks:
           
@@ -19,3 +20,12 @@
       yum:
        name: "{{ temp_folder }}/{{ jdk_rpm_file }}"
        state: present
+       
+    - name: Rediriger requete HTTP via Proxy       
+      shell: "export $JAVA_HOME={{ java_home }}"
+       
+#    - name: Rediriger requete HTTP via Proxy
+#      lineinfile:
+#       path: /etc/environment
+#       regexp: '^JAVA_HOME='
+#       line: 'JAVA_HOME="{{ java_home }}"' 
