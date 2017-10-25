@@ -6,7 +6,7 @@
     jdk_rpm_file: jdk-8u151-linux-x64.rpm
     package_directory: /root
     temp_folder: /tmp
-    fqdn: casserver.shq.local
+    fqdn: cas-server.shqrip.lab
 
   tasks:
           
@@ -29,7 +29,7 @@
     - name: Generate CSR
       command: openssl req \
         -new \
-        -subj '/C=US/ST=CA/L=Mountain View/O=Jasmeet/CN={{ fqdn }}'
+        -subj '/C=CA/ST=QC/L=Société d'habitation du Québec/O=SHQ/CN={{ fqdn }}'
         -key "/tmp/key.pem" \
         -out "/tmp/csr.pem"
       args:
