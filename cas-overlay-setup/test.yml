@@ -21,11 +21,11 @@
        name: "{{ temp_folder }}/{{ jdk_rpm_file }}"
        state: present
        
-    - name: Rediriger requete HTTP via Proxy       
-      shell: "export $JAVA_HOME={{ java_home }}"
+    - name: Ajouter la variable d'environnement "JAVA_HOME"
+      shell: "export JAVA_HOME={{ java_home }}"
        
-#    - name: Rediriger requete HTTP via Proxy
-#      lineinfile:
-#       path: /etc/environment
-#       regexp: '^JAVA_HOME='
-#       line: 'JAVA_HOME="{{ java_home }}"' 
+    - name: Ajouter la variable d'environnement "JAVA_HOME" dans le fichier /etc/environment
+      lineinfile:
+       path: /etc/environment
+       regexp: '^JAVA_HOME='
+       line: 'JAVA_HOME="{{ java_home }}"' 
