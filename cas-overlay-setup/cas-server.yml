@@ -1,5 +1,5 @@
 ---
-- hosts: casserver
+- hosts: cas-server
   remote_user: root
 
   vars:
