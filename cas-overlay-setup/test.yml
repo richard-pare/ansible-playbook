@@ -21,8 +21,8 @@
        name: "{{ temp_folder }}/{{ jdk_rpm_file }}"
        state: present
        
-    - name: Ajouter la variable d'environnement "JAVA_HOME"
-      shell: "export JAVA_HOME={{ java_home }}"
+#    - name: Ajouter la variable d'environnement "JAVA_HOME"
+#      shell: "export JAVA_HOME={{ java_home }}"
        
     - name: Ajouter la variable d'environnement "JAVA_HOME" dans le fichier /etc/environment
       lineinfile:
