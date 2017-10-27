@@ -7,6 +7,7 @@
     package_directory: /root
     temp_folder: /tmp
     fqdn: cas-server.shqrip.lab
+    server: cas-server
 
   tasks:
           
@@ -21,36 +22,36 @@
        state: present
        
     - name: Generate RSA Key
-      command: openssl genrsa \
-        -out "/tmp/key.pem" 2048
+      command: openssl genrsa -des3 \
+        -out "/tmp/{{ server }}.key" 2048
       args:
-        creates: "/tmp/key.pem"
+        creates: "/tmp/{{ server }}.key"
 
     - name: Generate CSR
       command: openssl req \
         -new \
         -subj '/C=CA/ST=QC/L=Societe/O=SHQ/CN={{ fqdn }}'
-        -key "/tmp/key.pem" \
-        -out "/tmp/csr.pem"
+        -key "/tmp/{{ server }}.key" \
+        -out "/tmp/{{ server }}.csr"
       args:
-        creates: "/tmp/csr.pem"
+        creates: "/tmp/{{ server }}.csr"
 
     - name: Generate Self-signed Certificate
       command: openssl req \
         -x509 \
         -days 1825 \
-        -key "/tmp/key.pem" \
-        -in "/tmp//csr.pem" \
-        -out "/tmp/cert.pem"
+        -key "/tmp/{{ server }}.key" \
+        -in "/tmp/{{ server }}.csr" \
+        -out "/tmp/{{ server }}.crt"
       args:
-        creates: "/tmp/cert.pem"
+        creates: "/tmp/{{ server }}.crt"
         
     - name: Import SSL certificate from services.gradle.org to a given cacerts keystore
       java_cert:
-        cert_path: /tmp/cert.pem
-        cert_alias: casserver
+        cert_path: /tmp/{{ server }}.crt
+        cert_alias: cas-server
         executable: /usr/java/jdk1.8.0_151/bin/keytool
-        keystore_path: /etc/cas/casserver
+        keystore_path: /etc/cas/cas-server
         keystore_pass: changeit
         keystore_create: yes
         state: present
