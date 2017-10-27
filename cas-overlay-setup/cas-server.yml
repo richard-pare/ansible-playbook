@@ -22,7 +22,7 @@
        state: present
        
     - name: Generate RSA Key
-      command: openssl genrsa -des3 \
+      command: openssl genrsa \
         -out "/tmp/{{ server }}.key" 2048
       args:
         creates: "/tmp/{{ server }}.key"
