@@ -1,0 +1,13 @@
+[Unit]
+Description=Serveur CAS
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/java -jar /opt/cas-server/webapps/cas.war
+ExecStop=/bin/kill -TERM $MAINPID
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
