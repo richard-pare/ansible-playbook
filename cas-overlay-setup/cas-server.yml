@@ -21,9 +21,10 @@
        name: "{{ temp_folder }}/{{ jdk_rpm_file }}"
        state: present
        
-    - name: Generate RSA Key
-      command: openssl genrsa \
-        -out "/tmp/{{ server }}.key" 2048
+    - name: Creer le certificat auto-signé
+      command: /opt/jdk1.8.0_151/bin/keytool -genkey -alias cas -keyalg RSA -validity 999 \
+        -keystore /etc/cas/thekeystore \
+        -ext san=dns:cas-server.shqrip.lab
       args:
         creates: "/tmp/{{ server }}.key"
 
